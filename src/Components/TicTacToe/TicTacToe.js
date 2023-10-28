@@ -21,7 +21,7 @@ export default function TicTacToe() {
     const box_array = [box0, box1, box2, box3, box4, box5, box6, box7, box8]
 
     const toggle = (e, num) => {
-        if (!e.target.innerHTML) {
+        if (!data[num]) {
 
             if (lock) return 0;
             if (count % 2 === 0) {
@@ -40,6 +40,12 @@ export default function TicTacToe() {
     }
 
     const winner = () => {
+        if(count === 9) {
+            titleRef.current.innerHTML = "No One <span class='text-orange-500 px-2'>Won<span/>"
+            setTimeout(() => {
+                reset();
+            }, 1500);
+        }
         if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") won(data[0])
         else if (data[3] === data[4] && data[4] === data[5] && data[5] !== "") won(data[3])
         else if (data[6] === data[7] && data[7] === data[8] && data[8] !== "") won(data[6])
@@ -70,26 +76,26 @@ export default function TicTacToe() {
     return (
         <div className='w-full h-screen bg-black/90 flex flex-col items-center p-10'>
 
-            <h1 ref={titleRef} className='text-center flex justify-center items-center text-white text-4xl font-semibold'>Tic Tac Toe Game In
+            <p ref={titleRef} className='text-center flex justify-center items-center text-white text-4xl font-semibold'>Tic Tac Toe Game In
                 <span className='text-orange-500 pl-2'>React</span>
-            </h1>
+            </p>
 
             <div className='m-10'>
 
                 <div className='w-96 flex justify-around my-4'>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box0} onClick={(e) => toggle(e, 0)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box1} onClick={(e) => toggle(e, 1)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box2} onClick={(e) => toggle(e, 2)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box0} onClick={(e) => toggle(e, 0)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box1} onClick={(e) => toggle(e, 1)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box2} onClick={(e) => toggle(e, 2)}></div>
                 </div>
                 <div className='w-96 flex justify-around my-4'>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md ' ref={box3} onClick={(e) => toggle(e, 3)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box4} onClick={(e) => toggle(e, 4)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box5} onClick={(e) => toggle(e, 5)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box3} onClick={(e) => toggle(e, 3)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box4} onClick={(e) => toggle(e, 4)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box5} onClick={(e) => toggle(e, 5)}></div>
                 </div>
                 <div className='w-96 flex justify-around my-4'>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box6} onClick={(e) => toggle(e, 6)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box7} onClick={(e) => toggle(e, 7)}></div>
-                    <div className='w-28 h-28 bg-gray-800 rounded-md' ref={box8} onClick={(e) => toggle(e, 8)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box6} onClick={(e) => toggle(e, 6)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box7} onClick={(e) => toggle(e, 7)}></div>
+                    <div className='w-28 h-28 bg-gray-800 rounded-md cursor-pointer' ref={box8} onClick={(e) => toggle(e, 8)}></div>
                 </div>
 
             </div>
